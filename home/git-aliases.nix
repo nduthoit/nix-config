@@ -3,17 +3,21 @@
     # Basic commands
     a = "add";
     aa = "add --all";
+    ap = "add -p";
     d = "diff";
     dc = "diff --cached";
     pl = "pull";
     pu = "push";
     puf = "push --force";
     s = "status";
+    st = "status";
+
 
     # Checkout commands
     co = "checkout";
-    cob = "checkout -b";
-    com = "checkout master";
+    nb = "checkout -b";
+    sw = "switch";
+    swm = "switch master";
 
     # Commit commands
     amend = "commit --amend --no-edit";
@@ -44,7 +48,9 @@
     spua = "stash push --all";
 
     # Other commands
-    lg = "log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(italic)- %an%C(reset)%C(magenta bold)%d%C(reset)' --all";
+    lsg = "log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(italic)- %an%C(reset)%C(magenta bold)%d%C(reset)' --all";
+    lg = "log --oneline";
     rs = "restore --staged";
+    which = "log --pretty=format:'%ad %h %d' --abbrev-commit --date=short -1";
   };
 }

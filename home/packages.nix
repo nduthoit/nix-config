@@ -34,10 +34,8 @@
   home.packages = lib.attrValues ({
     # Some basics
     inherit (pkgs)
-      abduco # lightweight session management
       bandwhich # display current network utilization by process
       bottom # fancy version of `top` with ASCII graphs
-      browsh # in terminal browser
       coreutils
       curl
       du-dust # fancy version of `du`
@@ -49,37 +47,21 @@
       parallel # runs commands in parallel
       ripgrep # better version of `grep`
       tealdeer # rust implementation of `tldr`
-      thefuck
-      unrar # extract RAR archives
-      upterm # secure terminal sharing
       wget
-      xz # extract XZ archives
     ;
 
     # Dev stuff
     inherit (pkgs)
       cloc # source code line counter
-      google-cloud-sdk
-      # idris2
       jq
       nodejs
-      s3cmd
-      stack
       typescript
     ;
-    inherit (pkgs.haskellPackages)
-      cabal-install
-      hoogle
-      hpack
-      implicit-hie
-    ;
-    agda = pkgs.agda.withPackages (ps: [ ps.standard-library ]);
 
     # Useful nix related tools
     inherit (pkgs)
       cachix # adding/managing alternative binary caches hosted by Cachix
       comma # run software from without installing it
-      # niv # easy dependency management for nix projects
       nix-output-monitor # get additional information while building packages
       nix-tree # interactively browse dependency graphs of Nix derivations
       nix-update # swiss-knife for updating nix packages
@@ -90,9 +72,8 @@
 
   } // lib.optionalAttrs pkgs.stdenv.isDarwin {
     inherit (pkgs)
-      cocoapods
       m-cli # useful macOS CLI commands
-      prefmanager # tool for working with macOS defaults
+      # prefmanager # tool for working with macOS defaults
     ;
   });
 }

@@ -39,29 +39,21 @@ in
     "nrlquaker/createzap"
   ];
 
-  # Prefer installing application from the Mac App Store
+  # Prefer installing application from the Mac App Store (they have to have been bought previously to work)
   homebrew.masApps = {
-    "1Password for Safari" = 1569813296;
-    "Accelerate for Safari" = 1459809092;
     DaisyDisk = 411643860;
-    "Dark Mode for Safari" = 1397180934;
-    Deliveries = 290986013;
-    Fantastical = 975937182;
     Keynote = 409183694;
-    "Notion Web Clipper" = 1559269364;
     Numbers = 409203825;
     Pages = 409201541;
-    Patterns = 429449079;
-    "Pixelmator Pro" = 1289583905;
-    "Save to Raindrop.io" = 1549370672;
+    # Patterns = 429449079;
+    # "Pixelmator Pro" = 1289583905;
+    # "Save to Raindrop.io" = 1549370672;
     Slack = 803453959;
-    "Swift Playgrounds" = 1496833156;
-    "Tailscale" = 1475387142;
+    # "Tailscale" = 1475387142;
     "Things 3" = 904280696;
-    Vimari = 1480933944;
     "WiFi Explorer" = 494803304;
     Xcode = 497799835;
-    "Yubico Authenticator" = 1497506650;
+    # "Yubico Authenticator" = 1497506650;
   };
 
   # If an app isn't available in the Mac App Store, or the version in the App Store has
@@ -69,40 +61,22 @@ in
   homebrew.casks = [
     "1password"
     "1password-cli"
-    "anki"
-    "arq"
-    "balenaetcher"
-    "cleanmymac"
-    "element"
-    "etrecheckpro"
-    "discord"
     "firefox"
     "google-chrome"
     "google-drive"
     "gpg-suite"
-    "hammerspoon"
+    # "hammerspoon"
+    "iina"
     "keybase"
-    "loopback"
-    "notion"
-    "nvidia-geforce-now"
-    "obsbot-me-tool"
-    "obsbot-webcam"
-    "parallels"
+    # "parallels"
     "postman"
-    "protonvpn"
-    "raindropio"
-    "raycast"
+    # "raindropio"
     "signal"
-    "skype"
-    "steam"
-    "superhuman"
-    "tor-browser"
-    "transmission"
-    "transmit"
+    # "superhuman"
     "visual-studio-code"
-    "vlc"
-    "yubico-yubikey-manager"
-    "yubico-yubikey-personalization-gui"
+    # "vlc"
+    # "yubico-yubikey-manager"
+    # "yubico-yubikey-personalization-gui"
   ];
 
   # Configuration related to casks
@@ -116,11 +90,4 @@ in
           IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
       '';
     };
-
-  # For cli packages that aren't currently available for macOS in `nixpkgs`.Packages should be
-  # installed in `../home/default.nix` whenever possible.
-  homebrew.brews = [
-    "swift-format"
-    "swiftlint"
-  ];
 }
