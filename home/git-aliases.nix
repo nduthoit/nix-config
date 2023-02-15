@@ -6,6 +6,7 @@
     ap = "add -p";
     d = "diff";
     dc = "diff --cached";
+    pf = "pull --ff-only";
     pl = "pull";
     pu = "push";
     puf = "push --force";

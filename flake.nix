@@ -51,7 +51,7 @@
         username = "nduthoit";
         fullName = "Nathan Duthoit";
         email = "nathan.duthoit@gmail.com";
-        nixConfigDirectory = "/Users/nduthoit/.config/nixpkgs";
+        nixConfigDirectory = "/Users/nduthoit/.config/nix-config";
       };
     in
     {

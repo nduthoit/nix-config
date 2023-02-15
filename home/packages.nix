@@ -46,6 +46,7 @@
       mosh # wrapper for `ssh` that better and not dropping connections
       parallel # runs commands in parallel
       ripgrep # better version of `grep`
+      silver-searcher # better grep
       tealdeer # rust implementation of `tldr`
       wget
     ;

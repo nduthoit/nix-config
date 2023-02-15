@@ -9,10 +9,11 @@
   # General config ----------------------------------------------------------------------------- {{{
 
   programs.kitty.settings = {
+    shell = "/run/current-system/sw/bin/fish --login --interactive";
     # https://fsd.it/shop/fonts/pragmatapro/
     font_family = "PragmataPro Mono Liga";
     font_size = "14.0";
-    adjust_line_height = "140%";
+    # adjust_line_height = "140%";
     disable_ligatures = "cursor"; # disable ligatures when cursor is on them
 
     # Window layout

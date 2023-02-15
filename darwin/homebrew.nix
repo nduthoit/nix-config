@@ -72,7 +72,8 @@ in
   homebrew.casks = [
     "1password"
     "1password-cli"
-    "avira-antivirus"
+    "alfred"
+    "divvy"
     "dropbox"
     "firefox"
     "google-chrome"
