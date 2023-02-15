@@ -40,9 +40,15 @@ in
   ];
 
   # Prefer installing application from the Mac App Store (they have to have been bought previously to work)
+  # Uses https://github.com/mas-cli/mas#-usage (see that page for instructions on how to get the app ID)
   homebrew.masApps = {
+    Alfred = 405843582;
+    BlueMail = 1458754578;
     DaisyDisk = 411643860;
     Keynote = 409183694;
+    "Microsoft 365" = 1450038993;
+    "Microsoft Remote Desktop" = 1295203466;
+    NordVPN = 905953485;
     Numbers = 409203825;
     Pages = 409201541;
     # Patterns = 429449079;
@@ -52,7 +58,7 @@ in
     # "Tailscale" = 1475387142;
     "Things 3" = 904280696;
     "WiFi Explorer" = 494803304;
-    Xcode = 497799835;
+    # Xcode = 497799835;
     # "Yubico Authenticator" = 1497506650;
   };
 
@@ -61,17 +67,24 @@ in
   homebrew.casks = [
     "1password"
     "1password-cli"
+    "avira-antivirus"
+    "dropbox"
     "firefox"
     "google-chrome"
     "google-drive"
-    "gpg-suite"
+    # "gpg-suite"
     # "hammerspoon"
     "iina"
-    "keybase"
+    "iterm2"
+    # "keybase"
+    "kitty"
+    "microsoft-teams"
+    "obsidian"
     # "parallels"
-    "postman"
+    # "postman"
     # "raindropio"
     "signal"
+    "spotify"
     # "superhuman"
     "visual-studio-code"
     # "vlc"
