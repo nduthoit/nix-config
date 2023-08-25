@@ -54,5 +54,7 @@
   # Finder
   system.defaults.finder = {
     FXEnableExtensionChangeWarning = true;
+    ShowStatusBar = true;
+    ShowPathbar = true;
   };
 }
