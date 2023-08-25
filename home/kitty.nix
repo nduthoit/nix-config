@@ -9,7 +9,8 @@
   # General config ----------------------------------------------------------------------------- {{{
 
   programs.kitty.settings = {
-    shell = "/run/current-system/sw/bin/fish --login --interactive";
+    # shell = "/run/current-system/sw/bin/fish --login --interactive";
+    background_opacity = "0.8";
     # https://fsd.it/shop/fonts/pragmatapro/
     font_family = "PragmataPro Mono Liga";
     font_size = "14.0";
@@ -27,13 +28,13 @@
     active_tab_font_style = "bold";
     inactive_tab_font_style = "normal";
     tab_activity_symbol = "";
+    copy_on_select = "clipboard";
+
+    scrollback_pager_history_size = "2000";
   };
 
   # Change the style of italic font variants
   programs.kitty.extraConfig = ''
-    font_features PragmataProMonoLiga-Italic +ss06
-    font_features PragmataProMonoLiga-BoldItalic +ss07
-    modify_font underline_thickness 400%
     modify_font underline_position 2
   '';
 
