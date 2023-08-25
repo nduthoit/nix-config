@@ -11,6 +11,17 @@
     pull.rebase = true;
     core.editor = "vim -f";
     core.excludesfile = "~/.global_gitignore";
+    gpg.format = "ssh";
+    gpg = {
+      "ssh" = {
+        program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      };
+    };
+    commit.gpgsign = true;
+  };
+
+  programs.git.signing = {
+    key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILVRZRGT9vmdx4jN9vVsKfdTZHF4TWx9eo5lqetrnfAn";
   };
 
   programs.git.ignores = [
