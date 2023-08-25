@@ -20,6 +20,15 @@ in
       source /opt/homebrew/bin/assume.fish $argv
       set -e AWS_PROFILE
     '';
+
+    ndx.body = ''
+      set NODE_OPTIONS --openssl-legacy-provider
+      set PATH $(npm bin) $PATH
+      set executable $argv[1]
+      echo "Running ./node_modules/.bin/$executable $argv[2..-1]"
+      ./node_modules/.bin/$executable $argv[2..-1]
+    '';
+
     # Toggles `$term_background` between "light" and "dark". Other Fish functions trigger when this
     # variable changes. We use a universal variable so that all instances of Fish have the same
     # value for the variable.
@@ -118,6 +127,7 @@ in
     ":q" = "exit";
     asme = "assume";
     cat = "${bat}/bin/bat";
+    clr = "clear";
     du = "${du-dust}/bin/dust";
     g = "${gitAndTools.git}/bin/git";
     grb = "g rebase -i $(g merge-base origin/master HEAD)";
