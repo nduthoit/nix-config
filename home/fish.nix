@@ -16,6 +16,10 @@ in
   # Fish functions ----------------------------------------------------------------------------- {{{
 
   programs.fish.functions = {
+    assume.body = ''
+      source /opt/homebrew/bin/assume.fish $argv
+      set -e AWS_PROFILE
+    '';
     # Toggles `$term_background` between "light" and "dark". Other Fish functions trigger when this
     # variable changes. We use a universal variable so that all instances of Fish have the same
     # value for the variable.
@@ -112,6 +116,7 @@ in
     # Other
     ".." = "cd ..";
     ":q" = "exit";
+    asme = "assume";
     cat = "${bat}/bin/bat";
     du = "${du-dust}/bin/dust";
     g = "${gitAndTools.git}/bin/git";
@@ -119,6 +124,7 @@ in
     ll = "ls -l --time-style long-iso --icons";
     ls = "${exa}/bin/exa";
     tb = "toggle-background";
+    unsetAWS = "set -e $(env | grep AWS | grep -v AWS_REGION | grep -v AWS_DEFAULT_REGION | sed '\''s|=.*||'\'')";
   };
 
   # Configuration that should be above `loginShellInit` and `interactiveShellInit`.
