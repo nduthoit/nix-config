@@ -197,7 +197,7 @@
           python = pkgs.mkShell {
             name = "python310";
             inputsFrom = attrValues {
-              inherit (pkgs.pkgs-master.python310Packages) black isort;
+              inherit (pkgs.pkgs-master.python310Packages) black isort ipython;
               inherit (pkgs) poetry python310 pyright;
             };
           };
