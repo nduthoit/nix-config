@@ -47,7 +47,7 @@
 
   # Trackpad
   system.defaults.trackpad = {
-    Clicking = false;
+    Clicking = true;
     TrackpadRightClick = true;
   };
 
