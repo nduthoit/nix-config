@@ -9,10 +9,13 @@
   programs.git.extraConfig = {
     diff.colorMoved = "default";
     pull.rebase = true;
+    core.editor = "vim -f";
+    core.excludesfile = "~/.global_gitignore";
   };
 
   programs.git.ignores = [
     ".DS_Store"
+    "myscripts/*"
   ];
 
   programs.git.userEmail = config.home.user-info.email;
