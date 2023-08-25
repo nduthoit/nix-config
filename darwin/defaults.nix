@@ -53,6 +53,7 @@
 
   # Finder
   system.defaults.finder = {
+    AppleShowAllFiles = true;
     FXEnableExtensionChangeWarning = true;
     ShowStatusBar = true;
     ShowPathbar = true;
