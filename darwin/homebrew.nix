@@ -37,26 +37,22 @@ in
     "homebrew/core"
     "homebrew/services"
     "nrlquaker/createzap"
+    "common-fate/granted"
   ];
 
   # Prefer installing application from the Mac App Store (they have to have been bought previously to work)
   # Uses https://github.com/mas-cli/mas#-usage (see that page for instructions on how to get the app ID)
   homebrew.masApps = {
-    Alfred = 405843582;
+    Amphetamine = 937984704;
     BlueMail = 1458754578;
     DaisyDisk = 411643860;
     Keynote = 409183694;
-    "Microsoft Excel" = 462058435;
-    "Microsoft Word" = 462054704;
-    "Microsoft PowerPoint" = 462062816;
-    "Microsoft Outlook" = 985367838;
-    "Microsoft OneNote" = 784801555;
-    "Microsoft OneDrive" = 823766827;
     "Microsoft Remote Desktop" = 1295203466;
     NordVPN = 905953485;
     Numbers = 409203825;
     Pages = 409201541;
     # Patterns = 429449079;
+    "Be Focused - Pomodoro Timer" = 973134470;
     # "Pixelmator Pro" = 1289583905;
     # "Save to Raindrop.io" = 1549370672;
     Slack = 803453959;
@@ -72,8 +68,10 @@ in
   homebrew.casks = [
     "1password"
     "1password-cli"
+    "adobe-acrobat-reader"
     "alfred"
     "divvy"
+    "docker"
     "dropbox"
     "firefox"
     "google-chrome"
@@ -84,6 +82,7 @@ in
     "iterm2"
     # "keybase"
     "kitty"
+    "microsoft-office"
     "microsoft-teams"
     "obsidian"
     # "parallels"
@@ -96,6 +95,11 @@ in
     # "vlc"
     # "yubico-yubikey-manager"
     # "yubico-yubikey-personalization-gui"
+    "zoom"
+  ];
+
+  homebrew.brews = [
+    "granted"
   ];
 
   # Configuration related to casks
@@ -107,6 +111,8 @@ in
         # This allows using agent forwarding when connecting remotely.
         Match host * exec "test -z $SSH_TTY"
           IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+        IgnoreUnknown UseKeychain
+          UseKeychain yes
       '';
     };
 }

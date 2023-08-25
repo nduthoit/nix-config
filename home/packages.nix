@@ -53,8 +53,10 @@
 
     # Dev stuff
     inherit (pkgs)
+      awscli
       cloc # source code line counter
       jq
+      mani
       nodejs
       typescript
     ;
