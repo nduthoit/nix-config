@@ -6,7 +6,7 @@
   # Aliases config in ./configs/git-aliases.nix
   programs.git.enable = true;
 
-  programs.git.extraConfig = {
+  programs.git.settings = {
     diff.colorMoved = "default";
     pull.rebase = true;
     core.editor = "vim -f";
@@ -29,11 +29,12 @@
     "myscripts/*"
   ];
 
-  programs.git.userEmail = config.home.user-info.email;
-  programs.git.userName = config.home.user-info.fullName;
+  programs.git.settings.user.email = config.home.user-info.email;
+  programs.git.settings.user.name = config.home.user-info.fullName;
 
   # Enhanced diffs
-  programs.git.delta.enable = true;
+  programs.delta.enable = true;
+  programs.delta.enableGitIntegration = true;
 
 
   # GitHub CLI

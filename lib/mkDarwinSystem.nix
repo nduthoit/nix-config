@@ -40,6 +40,7 @@ inputs.darwin.lib.darwinSystem {
         home.stateVersion = homeStateVersion;
         home.user-info = config.users.primaryUser;
       };
+      home-manager.backupFileExtension = "backup";
     })
   ];
 }

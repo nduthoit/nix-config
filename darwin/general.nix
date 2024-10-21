@@ -17,16 +17,25 @@
   programs.nix-index.enable = true;
 
   # Fonts
-  fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
-     recursive
-     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-   ];
+  fonts.packages = with pkgs; [
+    recursive
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.nerd-fonts.droid-sans-mono
+  ];
 
   # Keyboard
-  system.keyboard.enableKeyMapping = true;
-  system.keyboard.remapCapsLockToEscape = true;
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToEscape = false; # make sure this isn't also active
+    userKeyMapping = [
+      {
+        # Caps Lock -> Grave Accent / Tilde (`~`)
+        HIDKeyboardModifierMappingSrc = 30064771129;
+        HIDKeyboardModifierMappingDst = 30064771125;
+      }
+    ];
+  };
 
   # Add ability to used TouchID for sudo authentication
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 }

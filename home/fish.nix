@@ -17,13 +17,22 @@ in
 
   programs.fish.functions = {
     assume.body = ''
-      source /opt/homebrew/bin/assume.fish $argv
+      source (brew --prefix)/bin/assume.fish $argv
+      setBackgroundForAWSProfile
       set -e AWS_PROFILE
     '';
 
+    setBackgroundForAWSProfile.body = ''
+      # Sets the background color based on the AWS profile.
+      # if test "$AWS_PROFILE" = "xegprd-ro"
+      #   printf "\033]11;#FF0000\033\\"  # Set background to red
+      # else
+      #   printf "\033]11;#FFFFFF\033\\"  # Revert to white background
+      # end
+   '';
+
     ndx.body = ''
-      set NODE_OPTIONS --openssl-legacy-provider
-      set PATH $(npm bin) $PATH
+      set PATH $(pwd)/node_modules/.bin $PATH
       set executable $argv[1]
       echo "Running ./node_modules/.bin/$executable $argv[2..-1]"
       ./node_modules/.bin/$executable $argv[2..-1]
@@ -59,19 +68,19 @@ in
         set -xg LS_COLORS (${pkgs.vivid}/bin/vivid generate solarized-$term_background)
 
         # Set color variables
-        # if test "$term_background" = light
-        #   set emphasized_text  brgreen  # base01
-        #   set normal_text      bryellow # base00
-        #   set secondary_text   brcyan   # base1
-        #   set background_light white    # base2
-        #   set background       brwhite  # base3
-        # else
-        #   set emphasized_text  brcyan   # base1
-        #   set normal_text      brblue   # base0
-        #   set secondary_text   brgreen  # base01
-        #   set background_light black    # base02
-        #   set background       brblack  # base03
-        # end
+      #   if test "$term_background" = light
+      #     set emphasized_text  brgreen  # base01
+      #     set normal_text      bryellow # base00
+      #     set secondary_text   brcyan   # base1
+      #     set background_light white    # base2
+      #     set background       brwhite  # base3
+      #   else
+      #     set emphasized_text  brcyan   # base1
+      #     set normal_text      brblue   # base0
+      #     set secondary_text   brgreen  # base01
+      #     set background_light black    # base02
+      #     set background       brblack  # base03
+      #   end
 
         # Set Fish colors that change when background changes
         # set -g fish_color_command                    $emphasized_text --bold  # color of commands
@@ -95,14 +104,8 @@ in
         else
           alias btm "btm --color default"
         end
-      '' + optionalString config.programs.neovim.enable ''
-
-      # Set `background` of all running Neovim instances.
-      for server in (${pkgs.neovim-remote}/bin/nvr --serverlist)
-        ${pkgs.neovim-remote}/bin/nvr -s --nostart --servername $server \
-          -c "set background=$term_background" &
-      end
       '';
+
       onVariable = "term_background";
     };
   };
@@ -113,9 +116,9 @@ in
   # Aliases
   programs.fish.shellAliases = with pkgs; {
     # Nix related
-    drb = "darwin-rebuild build --flake ${nixConfigDirectory}";
-    drs = "darwin-rebuild switch --flake ${nixConfigDirectory}";
-    flakeup = "nix flake update ${nixConfigDirectory}";
+    drb = "sudo darwin-rebuild build --flake path:${nixConfigDirectory}";
+    drs = "sudo darwin-rebuild switch --flake path:${nixConfigDirectory}";
+    flakeup = "nix flake update --flake path:${nixConfigDirectory}";
     nb = "nix build";
     nd = "nix develop";
     nf = "nix flake";
@@ -125,19 +128,21 @@ in
     # Other
     ".." = "cd ..";
     ":q" = "exit";
+    cd = "z";
     asme = "assume";
     cat = "${bat}/bin/bat";
     clr = "clear";
-    du = "${du-dust}/bin/dust";
-    g = "${gitAndTools.git}/bin/git";
+    du = "${dust}/bin/dust";
+    g = "${git}/bin/git";
     grb = "g rebase -i $(g merge-base origin/master HEAD)";
     grbas = "grb --autosquash";
     la = "ll -a";
     ll = "ls -l --time-style long-iso --icons";
-    ls = "${exa}/bin/exa";
+    ls = "${eza}/bin/eza";
     tb = "toggle-background";
     unsetAWS = "set -e $(env | grep AWS | grep -v AWS_REGION | grep -v AWS_DEFAULT_REGION | sed '\''s|=.*||'\'')";
     cleanGit = "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D";
+    surf="/Applications/Windsurf.app/Contents/Resources/app/bin/windsurf";
   };
 
   # Configuration that should be above `loginShellInit` and `interactiveShellInit`.
@@ -164,6 +169,12 @@ in
     set -g fish_color_operator     green     # color of parameter expansion operators like '*' and '~'
     set -g fish_color_escape       red       # color of character escapes like '\n' and and '\x70'
     set -g fish_color_cancel       red       # color of the '^C' indicator on a canceled command
+
+    # Set TERM
+    set -g TERM "xterm-256color"
+
+    # Keybindings
+    bind \cw backward-kill-word
   '';
   # }}}
 }

@@ -30,7 +30,9 @@
     tab_activity_symbol = "";
     copy_on_select = "clipboard";
 
-    scrollback_pager_history_size = "2000";
+    scrollback_lines = "100000";
+    scrollback_pager_history_size = "4000";
+    remote_kitty = "if-needed";
   };
 
   # Change the style of italic font variants

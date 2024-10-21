@@ -1,4 +1,11 @@
+{ config, ... }:
+
+let
+  username = config.users.primaryUser.username;
+in
+
 {
+  system.primaryUser = username;
   system.defaults.NSGlobalDomain = {
     "com.apple.trackpad.scaling" = 1.0;
     AppleInterfaceStyleSwitchesAutomatically = true;
@@ -15,25 +22,27 @@
   };
 
   # Firewall
-  system.defaults.alf = {
-    globalstate = 1;
-    allowsignedenabled = 1;
-    allowdownloadsignedenabled = 1;
-    stealthenabled = 1;
-  };
+  networking.applicationFirewall.enable = true;
+  networking.applicationFirewall.allowSigned = true;
+  networking.applicationFirewall.allowSignedApp = true;
+  networking.applicationFirewall.enableStealthMode = true;
 
   # Dock and Mission Control
   system.defaults.dock = {
     autohide = true;
-    expose-group-by-app = false;
+    expose-group-apps = false;
     mru-spaces = false;
-    static-only = true;
+    static-only = false;
     tilesize = 64;
     # Disable all hot corners
     wvous-bl-corner = 1;
     wvous-br-corner = 1;
     wvous-tl-corner = 1;
     wvous-tr-corner = 1;
+    persistent-others = [
+      "/Users/${username}/Library/Mobile Documents/com~apple~CloudDocs/"
+      { folder = { path = "/Users/${username}/Downloads"; arrangement = "date-added"; showas = "fan"; }; }
+    ];
   };
 
   # Login and lock screen

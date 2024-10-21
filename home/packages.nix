@@ -24,7 +24,18 @@
   # https://nix-community.github.io/home-manager/options.html#opt-programs.ssh.enable
   # Some options also set in `../darwin/homebrew.nix`.
   programs.ssh.enable = true;
-  programs.ssh.controlPath = "~/.ssh/%C"; # ensures the path is unique but also fixed length
+  programs.ssh.enableDefaultConfig = false;
+  programs.ssh.matchBlocks = {
+    "*" = {
+      controlPath = "~/.ssh/%C"; # ensures the path is unique but also fixed length
+    };
+    "1password-agent" = {
+      match = "host * exec \"test -z $SSH_TTY\"";
+      extraOptions = {
+        IdentityAgent = "\"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
+      };
+    };
+  };
 
   # Zoxide, a faster way to navigate the filesystem
   # https://github.com/ajeetdsouza/zoxide
@@ -38,27 +49,36 @@
       bottom # fancy version of `top` with ASCII graphs
       coreutils
       curl
-      du-dust # fancy version of `du`
-      exa # fancy version of `ls`
+      dust # fancy version of `du`
+      eza # fancy version of `ls`
       fd # fancy version of `find`
       htop # fancy version of `top`
       hyperfine # benchmarking tool
       mosh # wrapper for `ssh` that better and not dropping connections
-      parallel # runs commands in parallel
       ripgrep # better version of `grep`
       silver-searcher # better grep
+      parallel
       tealdeer # rust implementation of `tldr`
+      # "unixtools.watch"
       wget
     ;
 
     # Dev stuff
     inherit (pkgs)
-      awscli
+      awscli2
       cloc # source code line counter
+      glab
+      helix
       jq
       mani
       nodejs
+      poppler-utils
+      python3
+      tmux
       typescript
+      shellcheck
+      uv
+      yq
     ;
 
     # Useful nix related tools
@@ -69,7 +89,6 @@
       nix-tree # interactively browse dependency graphs of Nix derivations
       nix-update # swiss-knife for updating nix packages
       nixpkgs-review # review pull-requests on nixpkgs
-      node2nix # generate Nix expressions to build NPM packages
       statix # lints and suggestions for the Nix programming language
     ;
 

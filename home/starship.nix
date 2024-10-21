@@ -9,7 +9,7 @@
     # See docs here: https://starship.rs/config/
     # Symbols config configured ./starship-symbols.nix.
 
-    command_timeout = 600;
+    command_timeout = 2000;
     directory.fish_style_pwd_dir_length = 1; # turn on fish directory truncation
     directory.truncation_length = 2; # number of directories not to truncate
     # hostname.style = "bold green"; # don't like the default

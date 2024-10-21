@@ -4,25 +4,17 @@
   inputs = {
     # Package sets
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-22.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixos-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
 
     # Environment/system management
     darwin.url = "github:LnL7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.utils.follows = "flake-utils";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Flake utilities
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
-
-    # Utility for watching macOS `defaults`.
-    # prefmanager.url = "github:malob/prefmanager";
-    # prefmanager.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    # prefmanager.inputs.flake-compat.follows = "flake-compat";
-    # prefmanager.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = { self, darwin, home-manager, flake-utils, ... }@inputs:
@@ -67,12 +59,6 @@
         # Overlays to add different versions `nixpkgs` into package set
         pkgs-master = _: prev: {
           pkgs-master = import inputs.nixpkgs-master {
-            inherit (prev.stdenv) system;
-            inherit (nixpkgsDefaults) config;
-          };
-        };
-        pkgs-stable = _: prev: {
-          pkgs-stable = import inputs.nixpkgs-stable {
             inherit (prev.stdenv) system;
             inherit (nixpkgsDefaults) config;
           };
@@ -154,11 +140,12 @@
             nix.registry.my.flake = inputs.self;
           };
           inherit homeStateVersion;
-          homeModules = attrValues self.homeManagerModules;
+          homeModules = attrValues self.homeManagerModules
+            ++ self.lib.optionals (builtins.pathExists ./work/home/work.nix) [ ./work/home/work.nix ];
         });
 
         # Config with small modifications needed/desired for CI with GitHub workflow
-        githubCI = self.darwinConfigurations.NathanMBP23.override {
+        githubCI = self.darwinConfigurations.nathan-mbp23.override {
           system = "x86_64-darwin";
           username = "runner";
           nixConfigDirectory = "/Users/runner/work/nixpkgs/nixpkgs";
@@ -195,10 +182,10 @@
       devShells = let pkgs = self.legacyPackages.${system}; in
         {
           python = pkgs.mkShell {
-            name = "python310";
+            name = "python3";
             inputsFrom = attrValues {
               inherit (pkgs.pkgs-master.python310Packages) black isort ipython;
-              inherit (pkgs) poetry python310 pyright;
+              inherit (pkgs) poetry python3 pyright;
             };
           };
         };

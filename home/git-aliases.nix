@@ -1,15 +1,17 @@
 {
-  programs.git.aliases = {
+  programs.git.settings.alias = {
     # Basic commands
     a = "add";
     aa = "add --all";
     ap = "add -p";
+    cb = "rev-parse --abbrev-ref HEAD";
     d = "diff";
     dc = "diff --cached";
     pf = "pull --ff-only";
     pl = "pull";
     pu = "push";
-    puf = "push --force";
+    puf = "push --force-with-lease";
+    pub = "!f() { git push --force-with-lease --set-upstream origin $(git cb); }; f";
     s = "status";
     st = "status";
 
@@ -21,10 +23,10 @@
     swm = "switch master";
 
     # Commit commands
-    amend = "commit --amend --no-edit";
     c = "commit";
-    ca = "commit -a";
-    cam = "commit -a -m";
+    ca = "commit --amend";
+    cam = "commit --amend --no-edit";
+    cf = "commit --fixup";
     cm = "commit -m";
 
     # Rebase commands
