@@ -131,7 +131,7 @@
         nathan-mbp23 = makeOverridable self.lib.mkDarwinSystem (primaryUserDefaults // {
           modules = attrValues self.darwinModules ++ singleton {
             nixpkgs = nixpkgsDefaults;
-            networking.computerName = "Nathan 💻";
+            networking.computerName = "Nathan 23 💻";
             networking.hostName = "nathan-mbp23";
             networking.knownNetworkServices = [
               "Wi-Fi"
@@ -144,13 +144,22 @@
             ++ self.lib.optionals (builtins.pathExists ./work/home/work.nix) [ ./work/home/work.nix ];
         });
 
-        # Config with small modifications needed/desired for CI with GitHub workflow
-        githubCI = self.darwinConfigurations.nathan-mbp23.override {
-          system = "x86_64-darwin";
-          username = "runner";
-          nixConfigDirectory = "/Users/runner/work/nixpkgs/nixpkgs";
-          extraModules = singleton { homebrew.enable = self.lib.mkForce false; };
-        };
+        # My 2025 Apple Silicon macOS laptop config
+        nathan-mbp25 = makeOverridable self.lib.mkDarwinSystem (primaryUserDefaults // {
+          modules = attrValues self.darwinModules ++ singleton {
+            nixpkgs = nixpkgsDefaults;
+            networking.computerName = "Nathan 25 💻";
+            networking.hostName = "nathan-mbp25";
+            networking.knownNetworkServices = [
+              "Wi-Fi"
+              "USB 10/100/1000 LAN"
+            ];
+            nix.registry.my.flake = inputs.self;
+          };
+          inherit homeStateVersion;
+          homeModules = attrValues self.homeManagerModules
+            ++ self.lib.optionals (builtins.pathExists ./work/home/work.nix) [ ./work/home/work.nix ];
+        });
       };
 
       # Config I use with non-NixOS Linux systems (e.g., cloud VMs etc.)

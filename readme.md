@@ -42,7 +42,7 @@ cd ~/.config/nix-config
 ### 5. First-time nix-darwin activation
 
 Run this once to bootstrap nix-darwin (it uses `nix run` since `darwin-rebuild` doesn't
-exist yet):
+exist yet; change the hostname to match your machine):
 
 ```bash
 nix run nix-darwin -- switch --flake ~/.config/nix-config#nathan-mbp23
