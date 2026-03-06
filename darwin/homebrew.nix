@@ -90,7 +90,6 @@ in
     "iina"
     "iterm2"
     # "keybase"
-    "kitty"
     "logseq"
     "microsoft-edge"
     "microsoft-office"

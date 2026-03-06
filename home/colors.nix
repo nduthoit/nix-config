@@ -71,14 +71,6 @@
       selectionFg = "base3";
     };
 
-    pkgThemes.kitty = {
-      url_color = "blue";
-      tab_bar_background = "base2";
-      active_tab_background = "green";
-      active_tab_foreground = "base3";
-      inactive_tab_background = "base01";
-      inactive_tab_foreground = "base3";
-    };
   };
 
   colors.solarized-dark = {
@@ -93,15 +85,5 @@
       selectionFg = "base03";
     };
 
-    pkgThemes.kitty = {
-      inherit (config.colors.solarized-light.pkgThemes.kitty)
-        url_color
-        active_tab_background
-        active_tab_foreground
-        inactive_tab_background;
-
-      tab_bar_background = "base02";
-      inactive_tab_foreground = "base1";
-    };
   };
 }

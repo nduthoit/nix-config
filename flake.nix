@@ -100,14 +100,13 @@
         nduthoit-git = import ./home/git.nix;
         nduthoit-git-aliases = import ./home/git-aliases.nix;
         nduthoit-gh-aliases = import ./home/gh-aliases.nix;
-        nduthoit-kitty = import ./home/kitty.nix;
+        nduthoit-ghostty = import ./home/ghostty.nix;
         nduthoit-packages = import ./home/packages.nix;
         nduthoit-starship = import ./home/starship.nix;
         nduthoit-starship-symbols = import ./home/starship-symbols.nix;
 
         # Modules I've created
         colors = import ./modules/home/colors;
-        programs-kitty-extras = import ./modules/home/programs/kitty/extras.nix;
         home-user-info = { lib, ... }: {
           options.home.user-info =
             (self.darwinModules.users-primaryUser { inherit lib; }).options.users.primaryUser;
