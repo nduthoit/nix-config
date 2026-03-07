@@ -59,20 +59,20 @@
         # Overlays to add different versions `nixpkgs` into package set
         pkgs-master = _: prev: {
           pkgs-master = import inputs.nixpkgs-master {
-            inherit (prev.stdenv) system;
+            localSystem = prev.stdenv.hostPlatform.system;
             inherit (nixpkgsDefaults) config;
           };
         };
         pkgs-unstable = _: prev: {
           pkgs-unstable = import inputs.nixpkgs-unstable {
-            inherit (prev.stdenv) system;
+            localSystem = prev.stdenv.hostPlatform.system;
             inherit (nixpkgsDefaults) config;
           };
         };
         apple-silicon = _: prev: optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
           # Add access to x86 packages system is running Apple Silicon
           pkgs-x86 = import inputs.nixpkgs-unstable {
-            system = "x86_64-darwin";
+            localSystem = "x86_64-darwin";
             inherit (nixpkgsDefaults) config;
           };
         };
@@ -119,11 +119,10 @@
       darwinConfigurations = {
         # Minimal macOS configurations to bootstrap systems
         bootstrap-x86 = makeOverridable darwin.lib.darwinSystem {
-          system = "x86_64-darwin";
-          modules = [ ./darwin/bootstrap.nix { nixpkgs = nixpkgsDefaults; } ];
+          modules = [ ./darwin/bootstrap.nix { nixpkgs = nixpkgsDefaults // { hostPlatform = "x86_64-darwin"; }; } ];
         };
-        bootstrap-arm = self.darwinConfigurations.bootstrap-x86.override {
-          system = "aarch64-darwin";
+        bootstrap-arm = makeOverridable darwin.lib.darwinSystem {
+          modules = [ ./darwin/bootstrap.nix { nixpkgs = nixpkgsDefaults // { hostPlatform = "aarch64-darwin"; }; } ];
         };
 
         # My Apple Silicon macOS laptop config

@@ -22,8 +22,7 @@ inputs:
 }:
 
 inputs.darwin.lib.darwinSystem {
-  inherit system;
-  modules = modules ++ extraModules ++ [
+  modules = [{ nixpkgs.hostPlatform = system; }] ++ modules ++ extraModules ++ [
     inputs.home-manager.darwinModules.home-manager
     ({ config, ... }: {
       users.primaryUser = { inherit username fullName email nixConfigDirectory; };
