@@ -152,7 +152,8 @@
               "Wi-Fi"
               "USB 10/100/1000 LAN"
             ];
-            nix.registry.my.flake = inputs.self;
+            # Determinate Nix installer manages the Nix daemon; disable nix-darwin's management
+            nix.enable = false;
           };
           inherit homeStateVersion;
           homeModules = attrValues self.homeManagerModules
