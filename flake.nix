@@ -127,7 +127,9 @@
 
         # My Apple Silicon macOS laptop config
         nathan-mbp23 = makeOverridable self.lib.mkDarwinSystem (primaryUserDefaults // {
-          modules = attrValues self.darwinModules ++ singleton {
+          modules = attrValues self.darwinModules
+            ++ self.lib.optionals (builtins.pathExists ./work/darwin/homebrew.nix) [ ./work/darwin/homebrew.nix ]
+            ++ singleton {
             nixpkgs = nixpkgsDefaults;
             networking.computerName = "Nathan 23 💻";
             networking.hostName = "nathan-mbp23";
@@ -144,7 +146,9 @@
 
         # My 2025 Apple Silicon macOS laptop config
         nathan-mbp25 = makeOverridable self.lib.mkDarwinSystem (primaryUserDefaults // {
-          modules = attrValues self.darwinModules ++ singleton {
+          modules = attrValues self.darwinModules
+            ++ self.lib.optionals (builtins.pathExists ./work/darwin/homebrew.nix) [ ./work/darwin/homebrew.nix ]
+            ++ singleton {
             nixpkgs = nixpkgsDefaults;
             networking.computerName = "Nathan 25 💻";
             networking.hostName = "nathan-mbp25";
