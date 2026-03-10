@@ -39,29 +39,19 @@ in
   # Uses https://github.com/mas-cli/mas#-usage (see that page for instructions on how to get the app ID)
   homebrew.masApps = {
     Amphetamine = 937984704;
-    "Bee DICOM Viewer" = 1590273176;
-    BlueMail = 1458754578;
     DaisyDisk = 411643860;
-    "iFinance 5" = 1500241909;
+    # "iFinance 5" = 1500241909;
     Keynote = 409183694;
-    Kindle = 302584613;
-    "Microsoft Remote Desktop" = 1295203466;
+    # Kindle = 302584613;
     MindNode = 1289197285;
-    NordVPN = 905953485;
     Numbers = 409203825;
     Pages = 409201541;
-    # Patterns = 429449079;
-    "Be Focused - Pomodoro Timer" = 973134470;
-    # "Pixelmator Pro" = 1289583905;
-    # "Save to Raindrop.io" = 1549370672;
     Slack = 803453959;
     "Speedtest by Ookla" = 1153157709;
     "Tailscale" = 1475387142;
     Toggl = 1291898086;
     "Things 3" = 904280696;
     "WiFi Explorer" = 494803304;
-    # Xcode = 497799835;
-    # "Yubico Authenticator" = 1497506650;
   };
 
   # If an app isn't available in the Mac App Store, or the version in the App Store has
@@ -71,11 +61,7 @@ in
     "1password-cli"
     "adobe-acrobat-reader"
     "alfred"
-    "amazon-chime"
-    "anytype"
-    "calibre"
     "chatgpt"
-    "db-browser-for-sqlite"
     "dbeaver-community"
     "divvy"
     "docker-desktop"
@@ -84,31 +70,16 @@ in
     "ghostty"
     "google-chrome"
     "google-drive"
-    # "gpg-suite"
-    # "hammerspoon"
-    "heynote"
     "iina"
-    "iterm2"
-    # "keybase"
-    "logseq"
     "microsoft-edge"
-    "microsoft-office"
     "microsoft-teams"
+    "moom"
     "mullvad-vpn"
     "obs"
-    "obsidian"
-    # "parallels"
-    # "postman"
-    # "raindropio"
-    "signal"
     "spotify"
-    # "superhuman"
     "visual-studio-code"
-    # "vlc"
     "windows-app"
     "windsurf"
-    # "yubico-yubikey-manager"
-    # "yubico-yubikey-personalization-gui"
     "zoom"
   ];
 
