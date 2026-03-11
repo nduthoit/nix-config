@@ -26,7 +26,7 @@
 
       # Shell
       shell-integration = "fish";
-    } + "\n" + lib.concatMapStrings (entry: "keybind = ${entry}\n") [
+    } + "\nfont-family = Symbols Nerd Font Mono\n" + lib.concatMapStrings (entry: "keybind = ${entry}\n") [
       "cmd+shift+r=new_split:right"
       "cmd+shift+d=new_split:down"
       "alt+backspace=text:\\x17"

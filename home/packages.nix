@@ -93,6 +93,8 @@
     ;
 
   } // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    nerd-fonts-symbols = pkgs.nerd-fonts.symbols-only;
+
     inherit (pkgs)
       m-cli # useful macOS CLI commands
       # prefmanager # tool for working with macOS defaults
