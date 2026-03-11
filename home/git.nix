@@ -18,6 +18,7 @@
       };
     };
     commit.gpgsign = true;
+    advice.defaultBranchName = false;
   };
 
   programs.git.signing = {
