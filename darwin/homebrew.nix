@@ -64,6 +64,7 @@ in
     "brainfm"
     "capacities"
     "chatgpt"
+    "claude"
     "dbeaver-community"
     "divvy"
     "docker-desktop"
