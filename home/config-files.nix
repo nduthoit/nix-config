@@ -75,4 +75,9 @@
 
   # Stop `parallel` from displaying citation warning
   home.file.".parallel/will-cite".text = "";
+
+  # Create ~/Code/ directory
+  home.activation.createCodeDirectory = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    $DRY_RUN_CMD mkdir -p "$HOME/Code"
+  '';
 }
