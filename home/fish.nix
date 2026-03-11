@@ -16,21 +16,6 @@ in
   # Fish functions ----------------------------------------------------------------------------- {{{
 
   programs.fish.functions = {
-    assume.body = ''
-      source (brew --prefix)/bin/assume.fish $argv
-      setBackgroundForAWSProfile
-      set -e AWS_PROFILE
-    '';
-
-    setBackgroundForAWSProfile.body = ''
-      # Sets the background color based on the AWS profile.
-      # if test "$AWS_PROFILE" = "xegprd-ro"
-      #   printf "\033]11;#FF0000\033\\"  # Set background to red
-      # else
-      #   printf "\033]11;#FFFFFF\033\\"  # Revert to white background
-      # end
-   '';
-
     ndx.body = ''
       set PATH $(pwd)/node_modules/.bin $PATH
       set executable $argv[1]

@@ -1,11 +1,4 @@
-{ config, lib, ... }:
-
-let
-  dark = config.colors.solarized-dark;
-  # colors and terminal values are already resolved to hex strings by the color module
-  c = dark.colors;
-  t = dark.terminal;
-in
+{ lib, ... }:
 
 {
   # Ghostty is installed via Homebrew cask; configure it via home.file
@@ -16,6 +9,9 @@ in
       # Font
       font-family = "PragmataPro Mono Liga";
       font-size = 14;
+
+      # Theme — switches automatically with macOS light/dark mode
+      theme = "Github Dark High Contrast";
 
       # Window
       window-padding-x = 10;
@@ -30,32 +26,7 @@ in
 
       # Shell
       shell-integration = "fish";
-
-      # Solarized dark colors
-      background           = t.bg;
-      foreground           = t.fg;
-      cursor-color         = t.cursorBg;
-      cursor-text          = t.cursorFg;
-      selection-background = t.selectionBg;
-      selection-foreground = t.selectionFg;
-    } + "\n" + lib.concatMapStrings (entry: "palette = ${entry}\n") [
-      "0=${c.color0}"
-      "1=${c.color1}"
-      "2=${c.color2}"
-      "3=${c.color3}"
-      "4=${c.color4}"
-      "5=${c.color5}"
-      "6=${c.color6}"
-      "7=${c.color7}"
-      "8=${c.color8}"
-      "9=${c.color9}"
-      "10=${c.color10}"
-      "11=${c.color11}"
-      "12=${c.color12}"
-      "13=${c.color13}"
-      "14=${c.color14}"
-      "15=${c.color15}"
-    ] + lib.concatMapStrings (entry: "keybind = ${entry}\n") [
+    } + "\n" + lib.concatMapStrings (entry: "keybind = ${entry}\n") [
       "cmd+shift+r=new_split:right"
       "cmd+shift+d=new_split:down"
       "alt+backspace=text:\\x17"
