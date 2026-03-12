@@ -7,7 +7,7 @@
     { mkKeyValue = lib.generators.mkKeyValueDefault {} " = "; }
     {
       # Font
-      font-family = "PragmataPro Mono Liga";
+      font-family = "JetBrainsMono Nerd Font Mono";
       font-size = 14;
 
       # Theme — switches automatically with macOS light/dark mode
@@ -26,7 +26,7 @@
 
       # Shell
       shell-integration = "fish";
-    } + "\nfont-family = Symbols Nerd Font Mono\n" + lib.concatMapStrings (entry: "keybind = ${entry}\n") [
+    } + lib.concatMapStrings (entry: "keybind = ${entry}\n") [
       "cmd+shift+r=new_split:right"
       "cmd+shift+d=new_split:down"
       "alt+backspace=text:\\x17"
