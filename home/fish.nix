@@ -16,6 +16,23 @@ in
   # Fish functions ----------------------------------------------------------------------------- {{{
 
   programs.fish.functions = {
+    windsurf-export-extensions.body = ''
+      set output_file ${nixConfigDirectory}/windsurf-extensions.txt
+      /Applications/Windsurf.app/Contents/Resources/app/bin/windsurf --list-extensions > $output_file
+      echo "Exported "(count (cat $output_file))" extensions to $output_file"
+    '';
+
+    windsurf-import-extensions.body = ''
+      set input_file ${nixConfigDirectory}/windsurf-extensions.txt
+      if not test -f $input_file
+        echo "No extensions file found at $input_file"
+        return 1
+      end
+      for ext in (cat $input_file)
+        /Applications/Windsurf.app/Contents/Resources/app/bin/windsurf --install-extension $ext
+      end
+    '';
+
     ndx.body = ''
       set PATH $(pwd)/node_modules/.bin $PATH
       set executable $argv[1]
