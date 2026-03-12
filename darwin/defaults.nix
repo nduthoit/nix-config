@@ -39,6 +39,7 @@ in
     wvous-br-corner = 1;
     wvous-tl-corner = 1;
     wvous-tr-corner = 1;
+    showAppExposeGestureEnabled = true;
     persistent-others = [
       "/Users/${username}/Library/Mobile Documents/com~apple~CloudDocs/"
       { folder = { path = "/Users/${username}/Downloads"; arrangement = "date-added"; showas = "fan"; }; }
@@ -58,6 +59,7 @@ in
   system.defaults.trackpad = {
     Clicking = true;
     TrackpadRightClick = true;
+    TrackpadThreeFingerVertSwipeGesture = 2;
   };
 
   # Finder
