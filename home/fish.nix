@@ -17,19 +17,35 @@ in
 
   programs.fish.functions = {
     windsurf-export-extensions.body = ''
+      argparse p/profile= -- $argv
       set output_file ${nixConfigDirectory}/windsurf-extensions.txt
-      /Applications/Windsurf.app/Contents/Resources/app/bin/windsurf --list-extensions > $output_file
+      set ws_args --list-extensions
+      if set -q _flag_profile
+        set output_file ${nixConfigDirectory}/windsurf-extensions-$_flag_profile.txt
+        set ws_args --profile $_flag_profile $ws_args
+      end
+      /Applications/Windsurf.app/Contents/Resources/app/bin/windsurf $ws_args > $output_file
       echo "Exported "(count (cat $output_file))" extensions to $output_file"
     '';
 
     windsurf-import-extensions.body = ''
+      argparse p/profile= -- $argv
       set input_file ${nixConfigDirectory}/windsurf-extensions.txt
+      set profile_args
+      if set -q _flag_profile
+        set profile_args --profile $_flag_profile
+        if test -f ${nixConfigDirectory}/work/windsurf-extensions-$_flag_profile.txt
+          set input_file ${nixConfigDirectory}/work/windsurf-extensions-$_flag_profile.txt
+        else
+          set input_file ${nixConfigDirectory}/windsurf-extensions-$_flag_profile.txt
+        end
+      end
       if not test -f $input_file
         echo "No extensions file found at $input_file"
         return 1
       end
       for ext in (cat $input_file)
-        /Applications/Windsurf.app/Contents/Resources/app/bin/windsurf --install-extension $ext
+        /Applications/Windsurf.app/Contents/Resources/app/bin/windsurf $profile_args --install-extension $ext
       end
     '';
 
