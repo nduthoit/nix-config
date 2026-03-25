@@ -10,7 +10,6 @@
     diff.colorMoved = "default";
     pull.rebase = true;
     core.editor = "vim -f";
-    core.excludesfile = "~/.global_gitignore";
     gpg.format = "ssh";
     gpg = {
       "ssh" = {
@@ -28,6 +27,7 @@
   programs.git.ignores = [
     ".DS_Store"
     "myscripts/*"
+    ".direnv/"
   ];
 
   programs.git.settings.user.email = config.home.user-info.email;
