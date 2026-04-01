@@ -63,7 +63,6 @@ in
     "alfred"
     "brainfm"
     "capacities"
-    "chatgpt"
     "claude"
     "dbeaver-community"
     "divvy"
