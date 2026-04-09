@@ -61,6 +61,7 @@ in
     "1password-cli"
     "adobe-acrobat-reader"
     "alfred"
+    "beekeeper-studio"
     "brainfm"
     "capacities"
     "claude"
