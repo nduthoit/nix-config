@@ -143,7 +143,8 @@
           homeModules = attrValues self.homeManagerModules
             ++ self.lib.optionals (builtins.pathExists ./work/home/work.nix) [ ./work/home/work.nix ]
             ++ self.lib.optionals (builtins.pathExists ./work/home/fish.nix) [ ./work/home/fish.nix ]
-            ++ self.lib.optionals (builtins.pathExists ./work/home/vscode.nix) [ ./work/home/vscode.nix ];
+            ++ self.lib.optionals (builtins.pathExists ./work/home/vscode.nix) [ ./work/home/vscode.nix ]
+            ++ self.lib.optionals (builtins.pathExists ./work/home/agents.nix) [ ./work/home/agents.nix ];
         });
 
         # My 2025 Apple Silicon macOS laptop config
@@ -165,7 +166,8 @@
           homeModules = attrValues self.homeManagerModules
             ++ self.lib.optionals (builtins.pathExists ./work/home/work.nix) [ ./work/home/work.nix ]
             ++ self.lib.optionals (builtins.pathExists ./work/home/fish.nix) [ ./work/home/fish.nix ]
-            ++ self.lib.optionals (builtins.pathExists ./work/home/vscode.nix) [ ./work/home/vscode.nix ];
+            ++ self.lib.optionals (builtins.pathExists ./work/home/vscode.nix) [ ./work/home/vscode.nix ]
+            ++ self.lib.optionals (builtins.pathExists ./work/home/agents.nix) [ ./work/home/agents.nix ];
         });
       };
 
