@@ -59,9 +59,9 @@
       silver-searcher # better grep
       parallel
       tealdeer # rust implementation of `tldr`
-      # "unixtools.watch"
       wget
     ;
+    unixtools-watch = pkgs.unixtools.watch;
 
     # Dev stuff
     inherit (pkgs)
