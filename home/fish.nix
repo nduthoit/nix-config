@@ -16,28 +16,28 @@ in
   # Fish functions ----------------------------------------------------------------------------- {{{
 
   programs.fish.functions = {
-    windsurf-export-extensions.body = ''
+    devin-export-extensions.body = ''
       argparse p/profile= -- $argv
-      set output_file ${nixConfigDirectory}/windsurf-extensions.txt
+      set output_file ${nixConfigDirectory}/devin-extensions.txt
       set ws_args --list-extensions
       if set -q _flag_profile
-        set output_file ${nixConfigDirectory}/windsurf-extensions-$_flag_profile.txt
+        set output_file ${nixConfigDirectory}/devin-extensions-$_flag_profile.txt
         set ws_args --profile $_flag_profile $ws_args
       end
-      /Applications/Windsurf.app/Contents/Resources/app/bin/windsurf $ws_args > $output_file
+      /Applications/Devin.app/Contents/Resources/app/bin/devin-desktop $ws_args > $output_file
       echo "Exported "(count (cat $output_file))" extensions to $output_file"
     '';
 
-    windsurf-import-extensions.body = ''
+    devin-import-extensions.body = ''
       argparse p/profile= -- $argv
-      set input_file ${nixConfigDirectory}/windsurf-extensions.txt
+      set input_file ${nixConfigDirectory}/devin-extensions.txt
       set profile_args
       if set -q _flag_profile
         set profile_args --profile $_flag_profile
-        if test -f ${nixConfigDirectory}/work/windsurf-extensions-$_flag_profile.txt
-          set input_file ${nixConfigDirectory}/work/windsurf-extensions-$_flag_profile.txt
+        if test -f ${nixConfigDirectory}/work/devin-extensions-$_flag_profile.txt
+          set input_file ${nixConfigDirectory}/work/devin-extensions-$_flag_profile.txt
         else
-          set input_file ${nixConfigDirectory}/windsurf-extensions-$_flag_profile.txt
+          set input_file ${nixConfigDirectory}/devin-extensions-$_flag_profile.txt
         end
       end
       if not test -f $input_file
@@ -45,7 +45,7 @@ in
         return 1
       end
       for ext in (cat $input_file)
-        /Applications/Windsurf.app/Contents/Resources/app/bin/windsurf $profile_args --install-extension $ext
+        /Applications/Devin.app/Contents/Resources/app/bin/devin-desktop $profile_args --install-extension $ext
       end
     '';
 
@@ -160,7 +160,7 @@ in
     tb = "toggle-background";
     unsetAWS = "set -e $(env | grep AWS | grep -v AWS_REGION | grep -v AWS_DEFAULT_REGION | sed '\''s|=.*||'\'')";
     cleanGit = "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D";
-    surf="/Applications/Windsurf.app/Contents/Resources/app/bin/windsurf";
+    devin="/Applications/Devin.app/Contents/Resources/app/bin/devin-desktop";
   };
 
   # Configuration that should be above `loginShellInit` and `interactiveShellInit`.
