@@ -54,7 +54,6 @@
       hyperfine # benchmarking tool
       mosh # wrapper for `ssh` that better and not dropping connections
       ripgrep # better version of `grep`
-      silver-searcher # better grep
       parallel
       tealdeer # rust implementation of `tldr`
       wget
