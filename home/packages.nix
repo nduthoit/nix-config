@@ -25,15 +25,13 @@
   # Some options also set in `../darwin/homebrew.nix`.
   programs.ssh.enable = true;
   programs.ssh.enableDefaultConfig = false;
-  programs.ssh.matchBlocks = {
+  programs.ssh.settings = {
     "*" = {
-      controlPath = "~/.ssh/%C"; # ensures the path is unique but also fixed length
+      ControlPath = "~/.ssh/%C"; # ensures the path is unique but also fixed length
     };
     "1password-agent" = {
-      match = "host * exec \"test -z $SSH_TTY\"";
-      extraOptions = {
-        IdentityAgent = "\"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
-      };
+      header = ''Match host * exec "test -z $SSH_TTY"'';
+      IdentityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
     };
   };
 
