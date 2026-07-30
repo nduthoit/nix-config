@@ -35,6 +35,7 @@
     rbc = "rebase --continue";
     rbi = "rebase --interactive";
     rbs = "rebase --skip";
+    rbm = "rebase master";
 
     # Reset commands
     r = "reset HEAD";
