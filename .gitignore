@@ -5,6 +5,3 @@ pkgs/python-packages/requirements_frozen.txt
 private.nix
 
 result
-
-# Symlink to private work config repo
-work
