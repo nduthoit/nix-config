@@ -26,13 +26,11 @@ in
 
   homebrew.enable = true;
   homebrew.onActivation.autoUpdate = true;
-  homebrew.onActivation.cleanup = "zap";
+  homebrew.onActivation.extraFlags = [ "--force-cleanup" ];
   homebrew.global.brewfile = true;
 
   homebrew.taps = [
-    "nrlquaker/createzap"
     "common-fate/granted"
-    "pkgxdev/made"
   ];
 
   # Prefer installing application from the Mac App Store (they have to have been bought previously to work)
@@ -41,11 +39,12 @@ in
     Amphetamine = 937984704;
     DaisyDisk = 411643860;
     # "iFinance 5" = 1500241909;
-    Keynote = 409183694;
+    "Hidden Bar" = 1452453066;
+    Keynote = 361285480;
     # Kindle = 302584613;
     MindNode = 1289197285;
-    Numbers = 409203825;
-    Pages = 409201541;
+    Numbers = 361304891;
+    Pages = 361309726;
     Slack = 803453959;
     "Speedtest by Ookla" = 1153157709;
     "Tailscale" = 1475387142;
@@ -65,7 +64,10 @@ in
     "brainfm"
     "capacities"
     "claude"
+    "claude-code"
     "dbeaver-community"
+    "devin-cli"
+    "devin-desktop"
     "divvy"
     "docker-desktop"
     "dropbox"
@@ -82,8 +84,8 @@ in
     "obs"
     "spotify"
     "visual-studio-code"
+    "vlc"
     "windows-app"
-    "windsurf"
     "zoom"
   ];
 
@@ -91,7 +93,6 @@ in
     "granted"
     "imagemagick"
     "mas"
-    "pkgxdev/made/pkgx"
     "ollama"
   ];
 
