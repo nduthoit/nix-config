@@ -12,6 +12,7 @@ in
 
   # Add Fish plugins
   home.packages = [ pkgs.fishPlugins.done ];
+  home.sessionPath = [ "$HOME/.local/bin" ];
 
   # Fish functions ----------------------------------------------------------------------------- {{{
 
@@ -160,7 +161,7 @@ in
     tb = "toggle-background";
     unsetAWS = "set -e $(env | grep AWS | grep -v AWS_REGION | grep -v AWS_DEFAULT_REGION | sed '\''s|=.*||'\'')";
     cleanGit = "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D";
-    devin="/Applications/Devin.app/Contents/Resources/app/bin/devin-desktop";
+    devd="/Applications/Devin.app/Contents/Resources/app/bin/devin-desktop";
   };
 
   # Configuration that should be above `loginShellInit` and `interactiveShellInit`.
