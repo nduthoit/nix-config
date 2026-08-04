@@ -33,6 +33,10 @@
       header = ''Match host * exec "test -z $SSH_TTY"'';
       IdentityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
     };
+    #"bitwarden-agent" = {
+    #  header = ''Match host * exec "test -z $SSH_TTY"'';
+    #  IdentityAgent = ''"~/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"'';
+    #};
   };
 
   # Zoxide, a faster way to navigate the filesystem
