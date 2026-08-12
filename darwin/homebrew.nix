@@ -86,6 +86,7 @@ in
     "visual-studio-code"
     "vlc"
     "windows-app"
+    "zed"
     "zoom"
   ];
 

@@ -104,6 +104,7 @@
         nduthoit-packages = import ./home/packages.nix;
         nduthoit-starship = import ./home/starship.nix;
         nduthoit-starship-symbols = import ./home/starship-symbols.nix;
+        nduthoit-zed = import ./home/zed.nix;
 
         # Modules I've created
         colors = import ./modules/home/colors;
