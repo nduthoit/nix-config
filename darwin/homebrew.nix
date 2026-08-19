@@ -66,8 +66,6 @@ in
     "claude"
     "claude-code"
     "dbeaver-community"
-    "devin-cli"
-    "devin-desktop"
     "divvy"
     "docker-desktop"
     "dropbox"

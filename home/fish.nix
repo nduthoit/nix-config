@@ -17,28 +17,28 @@ in
   # Fish functions ----------------------------------------------------------------------------- {{{
 
   programs.fish.functions = {
-    devin-export-extensions.body = ''
+    code-export-extensions.body = ''
       argparse p/profile= -- $argv
-      set output_file ${nixConfigDirectory}/devin-extensions.txt
-      set ws_args --list-extensions
+      set output_file ${nixConfigDirectory}/vscode-extensions.txt
+      set code_args --list-extensions
       if set -q _flag_profile
-        set output_file ${nixConfigDirectory}/devin-extensions-$_flag_profile.txt
-        set ws_args --profile $_flag_profile $ws_args
+        set output_file ${nixConfigDirectory}/vscode-extensions-$_flag_profile.txt
+        set code_args --profile $_flag_profile $code_args
       end
-      /Applications/Devin.app/Contents/Resources/app/bin/devin-desktop $ws_args > $output_file
+      "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" $code_args > $output_file
       echo "Exported "(count (cat $output_file))" extensions to $output_file"
     '';
 
-    devin-import-extensions.body = ''
+    code-import-extensions.body = ''
       argparse p/profile= -- $argv
-      set input_file ${nixConfigDirectory}/devin-extensions.txt
+      set input_file ${nixConfigDirectory}/vscode-extensions.txt
       set profile_args
       if set -q _flag_profile
         set profile_args --profile $_flag_profile
-        if test -f ${nixConfigDirectory}/work/devin-extensions-$_flag_profile.txt
-          set input_file ${nixConfigDirectory}/work/devin-extensions-$_flag_profile.txt
+        if test -f ${nixConfigDirectory}/work/vscode-extensions-$_flag_profile.txt
+          set input_file ${nixConfigDirectory}/work/vscode-extensions-$_flag_profile.txt
         else
-          set input_file ${nixConfigDirectory}/devin-extensions-$_flag_profile.txt
+          set input_file ${nixConfigDirectory}/vscode-extensions-$_flag_profile.txt
         end
       end
       if not test -f $input_file
@@ -46,7 +46,7 @@ in
         return 1
       end
       for ext in (cat $input_file)
-        /Applications/Devin.app/Contents/Resources/app/bin/devin-desktop $profile_args --install-extension $ext
+        "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" $profile_args --install-extension $ext
       end
     '';
 
@@ -161,7 +161,6 @@ in
     tb = "toggle-background";
     unsetAWS = "set -e $(env | grep AWS | grep -v AWS_REGION | grep -v AWS_DEFAULT_REGION | sed '\''s|=.*||'\'')";
     cleanGit = "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D";
-    devd="/Applications/Devin.app/Contents/Resources/app/bin/devin-desktop";
   };
 
   # Configuration that should be above `loginShellInit` and `interactiveShellInit`.
