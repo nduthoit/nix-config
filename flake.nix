@@ -94,6 +94,7 @@
 
       homeManagerModules = {
         # My configurations
+        nduthoit-claude = import ./home/claude.nix;
         nduthoit-colors = import ./home/colors.nix;
         nduthoit-config-files = import ./home/config-files.nix;
         nduthoit-fish = import ./home/fish.nix;

@@ -28,6 +28,7 @@
     ".DS_Store"
     "myscripts/*"
     ".direnv/"
+    ".claude/settings.local.json"
   ];
 
   programs.git.settings.user.email = config.home.user-info.email;
