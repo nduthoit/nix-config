@@ -29,5 +29,6 @@
       }
     }
   },
-  "theme": "dark-daltonized"
+  "theme": "dark-daltonized",
+  "outputStyle": "simple-english"
 }
