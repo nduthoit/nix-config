@@ -101,6 +101,7 @@
         nduthoit-git-aliases = import ./home/git-aliases.nix;
         nduthoit-gh-aliases = import ./home/gh-aliases.nix;
         nduthoit-ghostty = import ./home/ghostty.nix;
+        nduthoit-mcp-servers = import ./home/mcp-servers.nix;
         nduthoit-packages = import ./home/packages.nix;
         nduthoit-starship = import ./home/starship.nix;
         nduthoit-starship-symbols = import ./home/starship-symbols.nix;
